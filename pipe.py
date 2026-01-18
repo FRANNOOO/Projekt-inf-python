@@ -5,7 +5,8 @@ from PyQt5.QtGui import QPainter, QColor, QPen, QPainterPath
 
 
 class PipeWidget(QWidget):
-    def __init__(self, punkty, grubosc=12, kolor=Qt.gray):
+    def __init__(self, punkty, grubosc=12, kolor=Qt.gray, parent=None):
+        super().__init__(parent)
         # Konwersja listy krotek na obiekty QPointF
         self.punkty = [QPointF(float(p[0]), float(p[1])) for p in punkty]
         self.grubosc = grubosc
@@ -15,6 +16,13 @@ class PipeWidget(QWidget):
 
     def ustaw_przeplyw(self, plynie):
         self.czy_plynie = plynie
+        self.update()
+        self.update()
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.Antialiasing)
+        self.draw(painter)
 
     def draw(self, painter):
         if len(self.punkty) < 2:

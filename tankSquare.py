@@ -6,11 +6,11 @@ from PyQt5.QtWidgets import QWidget
 class TankWidgetSquare(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setMinimumSize(500, 400)
+        self.setMinimumSize(400, 300)
 
         # Parametry geometryczne
-        self.width = 500  # Szerokosc zbiornika
-        self.height = 400  # Wysokosc zbiornika
+        self.width = 400  # Szerokosc zbiornika
+        self.height = 300  # Wysokosc zbiornika
 
         # Stan poczatkowy (0.0 - 1.0)
         self._poziom = 0.5
@@ -39,7 +39,7 @@ class TankWidgetSquare(QWidget):
         path.lineTo(p4_bl)
         path.lineTo(p3_br)
         path.lineTo(p2_tr)
-        
+
         liquid_height_px = self.height * self._poziom
 
         rect_liquid = QRectF(
